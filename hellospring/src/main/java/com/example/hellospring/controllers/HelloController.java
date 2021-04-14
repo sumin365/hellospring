@@ -1,10 +1,12 @@
-
 package com.example.hellospring.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+//	메서드 단독 매핑: 메서드의 앞에 RequestMapping을 부여
 
 //Controller이런걸들이 컴포넌트다. 
 @Controller
@@ -25,7 +27,20 @@ public class HelloController {
 		
 		return mav;
 	}
-
+	
+	//	String을 반환하면 -> 기본적으로는 뷰 이름을 의미
+	@RequestMapping("/hello2")
+	public String hello2() {
+		return "/WEB-INF/views/hello.jsp";
+	}
+	
+	//	ResponseBody -> 리턴된 객체를 바로 응답으로 출력
+	@ResponseBody
+	@RequestMapping("/hello3")
+	public String hello3() {
+		return "<h3>Direct Response</h3>";
+	}
 }
 //01/39/42  http://localhost:8080/hellospring/hello?name=Spring 라고 주소창에 치기 -->
 //          http://localhost:8080/myportal/main
+//02/05/24  http://localhost:8080/hellospring/hello2
